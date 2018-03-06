@@ -16,16 +16,12 @@
 
 package com.tang.intellij.lua.stubs.index
 
-import com.intellij.psi.NavigatablePsiElement
-import com.intellij.psi.stubs.StubIndexKey
-import com.tang.intellij.lua.comment.psi.LuaDocClassDef
-import com.tang.intellij.lua.psi.LuaClassMember
+import com.intellij.psi.stubs.StringStubIndexExtension
+import com.tang.intellij.lua.lang.LuaLanguage
 import com.tang.intellij.lua.psi.LuaPsiElement
 
-object StubKeys {
-    val CLASS_MEMBER = StubIndexKey.createIndexKey<Int, LuaClassMember>("lua.index.class.member")
-    val SHORT_NAME = StubIndexKey.createIndexKey<String, NavigatablePsiElement>("lua.index.short_name")
-    val CLASS = StubIndexKey.createIndexKey<String, LuaDocClassDef>("lua.index.class")
-    val SUPER_CLASS = StubIndexKey.createIndexKey<String, LuaDocClassDef>("lua.index.super_class")
-    val NS_MEMBER = StubIndexKey.createIndexKey<String, LuaPsiElement>("lua.index.ns.member")
+class LuaNamespaceMembersIndex : StringStubIndexExtension<LuaPsiElement>() {
+    override fun getKey() = StubKeys.NS_MEMBER
+
+    override fun getVersion() = LuaLanguage.INDEX_VERSION
 }
